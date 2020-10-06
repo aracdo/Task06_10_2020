@@ -13,14 +13,14 @@ CREATE TABLE IF NOT EXISTS liks (
 );
 
 INSERT INTO users (user_id, user_name)
-     VALUES (3, 'Сидоров Сидор Сидорович'),
-            (1, 'Иванов Иван Иванович'),
-            (2, 'Петров Пётр Петрович');
+     VALUES (1, 'Сидоров Сидор Сидорович'),
+            (2, 'Иванов Иван Иванович'),
+            (3, 'Петров Пётр Петрович');
 
 INSERT INTO liks (from_user, to_user)
      VALUES (1, 3),
-            (2, 3),
-            (2, 3),
+            (3, 2),
+            (3, 1),
             (2, 3),
             (1, 2);
 select count(*) from liks group by (from_user);
