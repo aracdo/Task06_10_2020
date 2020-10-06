@@ -25,5 +25,7 @@ INSERT INTO liks (from_user, to_user)
             (1, 2);
 select count(*) from liks group by (from_user);
 SELECT users.user_name as user_name, 
-(select count(*) from liks WHERE liks.from_user = users.user_id) AS liked_from,
-(select count(*) from liks WHERE liks.to_user = users.user_id) AS liked_to FROM users ORDER BY user_name;
+(select count(*) from liks L_F WHERE L_F.from_user = users.user_id) AS liked_from,
+(select count(*) from liks L_T WHERE L_T.to_user = users.user_id) AS liked_to, 
+(SELECT count(*) FROM liks L_F JOIN liks L_T ON L_F.from_user = L_T.to_user AND L_T.from_user = L_F.to_user AND L_F.from_user = users.user_id) AS cross_like
+FROM users ORDER BY liked_to;
